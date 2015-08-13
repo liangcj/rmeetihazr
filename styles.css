@@ -1,0 +1,33 @@
+slides > slide.title-slide hgroup h1 {
+  font-size: 44pt;
+}
+
+.huge {
+  font-size: 2em;
+}
+
+.big {
+  font-size: 1.5em;
+}
+
+.marge {
+  font-size: 1.25em;
+}
+
+.small {
+  font-size: 0.85em;
+}
+
+.notitle {
+  margin-top: -10px;
+  margin-left: -20px;
+}
+
+slides > slide:not(.nobackground):after {
+  font-size: 12pt;
+  content: attr(data-slide-num);
+  position: absolute;
+  bottom: 20px;
+  right: 60px;
+  line-height: 1.9;
+}

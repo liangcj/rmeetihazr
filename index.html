@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ihazr: Interactive Hazard Regression</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+  <meta name="date" content="2015-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link rel="stylesheet" media="all" href="index_files/ioslides-13.5.1/fonts/fonts.css">
+
+  <link rel="stylesheet" media="all" href="index_files/ioslides-13.5.1/theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="index_files/ioslides-13.5.1/theme/css/phone.css">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'ihazr: Interactive Hazard Regression',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+              },
+
+      // Author information
+      presenters: [
+            {
+        name:  'C. Jason Liang' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0s ease-in-out;
+      -moz-transition: all 0s ease-in-out;
+      -o-transition: all 0s ease-in-out;
+      transition: all 0s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0s;
+      -moz-transition: opacity 0.6s ease-in 0s;
+      -o-transition: opacity 0.6s ease-in 0s;
+      transition: opacity 0.6s ease-in 0s;
+      opacity: 0;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">August 12, 2015</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2>ihazr</h2></hgroup><article  id="ihazr" class="big">
+
+<p><strong>i</strong>nteractive <strong>haz</strong>ard <strong>r</strong>egression</p>
+
+<img src='hazrlogo.png' title=''/>
+
+<p>Generate a <strong>D3 visualization</strong> using one line of <strong>R code</strong> thanks to <strong>htmlwidgets</strong></p>
+
+</article></slide><slide class=''><hgroup><h2>survival data</h2></hgroup><article  id="survival-data">
+
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" title="" alt="" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>interactive hazards</h2></hgroup><article  id="interactive-hazards">
+
+<p>Example:</p>
+
+<pre class = 'prettyprint lang-r'>library(dplyr)
+library(survival)
+library(ihazr)
+
+pbc5 &lt;- pbc %&gt;%
+  slice(1:312) %&gt;%
+  select(time, status, age, edema, bili, albumin, protime) %&gt;%
+  mutate(time = time/365, status = (status==2)*1, 
+         bili = log(bili), protime = log(protime))
+
+ihazr(time=pbc5[,1], status=pbc5[,2], marker=pbc5[,3:7])</pre>
+
+<p><a href='http://cjasonliang.com/rmeetihazr/example' title=''>click me</a></p>
+
+</article></slide><slide class=''><hgroup><h2>Feedback</h2></hgroup><article  id="feedback" class="big">
+
+<p><a href='http://github.com/liangcj/ihazr' title=''>http://github.com/liangcj/ihazr</a></p>
+
+<p>Is this useful?</p>
+
+<p>Is there already something out there that does this?</p>
+
+<p>What&#39;s an intuitive way to dynamically adjust the time bandwidth?</p>
+
+<p>Thoughts on interface?</p></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script src="index_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+<script src="index_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+<script src="index_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+<script src="index_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+<script src="index_files/ioslides-13.5.1/js/hammer.js"></script>
+<script src="index_files/ioslides-13.5.1/js/slide-controller.js"></script>
+<script src="index_files/ioslides-13.5.1/js/slide-deck.js"></script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "index_files/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
