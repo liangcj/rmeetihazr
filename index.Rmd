@@ -22,7 +22,7 @@ Generate a **D3 visualization** using one line of **R code** thanks to **htmlwid
 ```{r, echo=FALSE}
 library(hds)
 ssplot <- function(time, status, mark, legend=TRUE, 
-                   xlab="time", ylab="albumin", alpha=1, ...){
+                   xlab="time", ylab="bilirubin", alpha=1, ...){
   plot(time, mark, type="n", xlab=xlab, ylab=ylab,...)
   points(time, mark, 
          col=ifelse(status==1, rgb(0,0,1,alpha), rgb(0,0,0,alpha)), # colors
@@ -30,7 +30,7 @@ ssplot <- function(time, status, mark, legend=TRUE,
   if(legend) legend('topright', bty='n', pch=c(16, 1), col=c('blue', 'black'), legend=c('event', 'censored'), cex=1.25)
 }
 par(mar=c(2.5,2.5,0.1,0.1), mgp=c(1.5,0.5,0))
-ssplot(pbc5[,1], pbc5[,2], pbc5[,6], bty="n", cex=1, cex.axis=1, cex.lab=1.25)
+ssplot(pbc5[,1], pbc5[,2], pbc5[,5], bty="n", cex=1, cex.axis=1, cex.lab=1.25)
 ```
 
 ## interactive hazards
